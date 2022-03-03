@@ -1,2 +1,3 @@
+#!/etc/magic
 0	string	SCHOOL	school
 !:mime	application/octet-stream
