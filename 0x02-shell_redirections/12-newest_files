@@ -1,2 +1,2 @@
 #!/bin/bash
-find -maxdepth 0 | sort -r | head
+ls | sort -nr | head
