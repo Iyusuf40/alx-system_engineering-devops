@@ -1,1 +1,2 @@
-The files in here are shell scripts, my first attempt
+# Shell scripts
+My lessons on bash, CLI, devops, e.t.c.
