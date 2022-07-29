@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+# alters hosts file
+echo "127.0.0.2	localhost" > c
+echo "8.8.8.8	facebook.com" >> c
+sudo cp c /etc/hosts
+rm c
