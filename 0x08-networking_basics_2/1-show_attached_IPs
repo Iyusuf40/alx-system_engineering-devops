@@ -1,4 +1,9 @@
 #!/usr/bin/env bash
-# prints all ip addresses
-hostname -I
-echo 127.0.0.1
+# test
+ifconfig | grep "inet " | tr -d " "> file
+ll=$(cat file)
+for i in $ll
+do
+	IFS="net" read -r -a arr <<< "$i"
+	echo "${arr[3]}"
+done
