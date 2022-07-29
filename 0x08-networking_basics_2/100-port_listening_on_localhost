@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+# listen to a connection
+sudo nc -l -p 80
