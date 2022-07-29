@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+# test
+ifconfig | grep "inet " > file
+#cut -c 14-22 file
+cut -d " " -f 10 file
+rm file
