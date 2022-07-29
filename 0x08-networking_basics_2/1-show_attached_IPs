@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+# prints all ip addresses
+hostname -I
+echo 127.0.0.1
