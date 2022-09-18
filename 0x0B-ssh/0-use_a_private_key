@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+# script ssh's into server 7360-web-01
+ssh -i ~/.ssh/school ubuntu@7360-web-01
