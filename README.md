@@ -1,2 +1,1 @@
-# Shell scripts
-My lessons on bash, CLI, devops, e.t.c.
+# My first lesson on web stack debugging
