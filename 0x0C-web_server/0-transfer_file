@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # transfers a file over scp
-if [ $# -lt 4 ];
+if [ $# -lt 3 ];
 then
 	echo "Usage: 0-transfer_file PATH_TO_FILE \
 IP USERNAME PATH_TO_SSH_KEY"
@@ -13,10 +13,9 @@ USERNAME=$3
 if [ $# -gt 3 ];
 then
 	PATH_TO_SSH_KEY=$4
-	OPT_PLUS_PATH="-i $PATH_TO_SSH_KEY"
 else
 	OPT_PLUS_PATH=""
 fi
 
-scp -o StrictHostKeyChecking=off  "$OPT_PLUS_PATH" \
-	"$USERNAME@$IP" "$PATH_TO_FILE" "$USERNAME@$IP:~/"
+scp -o StrictHostKeyChecking=off -i "$PATH_TO_SSH_KEY"\
+       	"$PATH_TO_FILE" "scp://$USERNAME@$IP"
