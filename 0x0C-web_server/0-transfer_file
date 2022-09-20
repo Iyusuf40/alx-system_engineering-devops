@@ -18,5 +18,5 @@ else
 	OPT_PLUS_PATH=""
 fi
 
-scp -o "StrictHostKeyChecking no"  "$OPT_PLUS_PATH" \
-	"$USERNAME@$IP" "$PATH_TO_FILE" scp://"$USERNAME@$IP"
+scp -o StrictHostKeyChecking=off  "$OPT_PLUS_PATH" \
+	"$USERNAME@$IP" "$PATH_TO_FILE" "$USERNAME@$IP:~/"
