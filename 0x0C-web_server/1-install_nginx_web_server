@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+# installs nginx server
+sudo apt-get -y update
+sudo apt-get -y upgrade
+sudo apt-get -y install nginx
+echo ""
+echo "install finished"
+echo ""
+echo "Hello World!" > /var/www/html/index.html
+sudo service nginx start
