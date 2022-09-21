@@ -12,8 +12,7 @@ IP=$2
 USERNAME=$3
 if [ $# -gt 3 ];
 then
-	OPT_PLUS_PATH="-i $4"
-	scp -o StrictHostKeyChecking=off "$OPT_PLUS_PATH"\
+	scp -o StrictHostKeyChecking=off -i "$4"\
 		"$PATH_TO_FILE" "scp://$USERNAME@$IP"
 else
 	scp -o StrictHostKeyChecking=off "$PATH_TO_FILE"\
