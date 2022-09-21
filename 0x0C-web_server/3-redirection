@@ -1,5 +1,12 @@
 #!/usr/bin/env bash
-# sets a permanent redirect to /redirect_me path
+# installs nginx server
+sudo apt-get -y update
+sudo apt-get -y install nginx
+echo ""
+echo "install finished"
+echo ""
+echo "Hello World!" > /var/www/html/index.html
+sudo service nginx start
 sudo sed -i "s/server_name _;/server_name _;\n\trewrite ^\/redirect_me \
 https:\/\/www.digitalocean.com\/community\/tutorials\/how-to-create-\
 temporary-and-permanent-redirects-with-nginx permanent;/" /etc/nginx/\
