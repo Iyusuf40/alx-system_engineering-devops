@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+# installs nginx server
+sudo apt-get -y update
+sudo apt-get -y install nginx
+echo ""
+echo "install finished"
+echo ""
+echo "Hello World!" > /var/www/html/index.html
+sudo service nginx start
+
+#configure redirect
+sudo sed -i "s/server_name _;/server_name _;\n\trewrite ^\/redirect_me \
+https:\/\/www.digitalocean.com\/community\/tutorials\/how-to-create-\
+temporary-and-permanent-redirects-with-nginx permanent;/" /etc/nginx/\
+sites-available/default
+
+#create custom_404 page
+echo "Ceci n'est pas une page" > /var/www/html/custom_404.html
+
+#configure custom 404
+sudo sed -i "s/server_name _;/error_page 404 \/custom_404.html;\
+ \nserver_name _;/" /etc/nginx/sites-enabled/default
+
+sudo service nginx restart
