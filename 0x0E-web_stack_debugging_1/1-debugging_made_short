@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+# script fixes nginx config
+sudo sed -i "/listen/d" /etc/nginx/sites-enabled/default
+sudo sed -i "s/^server {/server {\n\tlisten 80 default_server;\n\tlisten [::]:80 default_server;/" /etc/nginx/sites-enabled/default
+sudo pkill -HUP nginx
