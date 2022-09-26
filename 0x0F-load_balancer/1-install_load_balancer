@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+# script installs and configures a HAproxy server
+sudo apt-get -y install --no-install-recommends software-properties-common
+sudo add-apt-repository -y ppa:vbernat/haproxy-2.6
+sudo apt-get -y install haproxy=2.6.\*
+echo "ENABLED=1" >> /etc/default/haproxy
+
+#configure backend
+isBackEndSet=$( grep 'backend web-backend' < /etc/haproxy/haproxy.cfg )
+if [ ! "$isBackEndSet" ]
+then
+block="\nbackend web-backend\n\tbalance roundrobin\n\t\
+server sv1 100.25.39.211:80 check\n\tserver sv2 100.26.180.73:80 check"
+echo -e "$block" >> /etc/haproxy/haproxy.cfg
+fi
+
+#configure frontend
+isFrontEndSet=$( grep 'frontend http' < /etc/haproxy/haproxy.cfg )
+if [ ! "$isFrontEndSet" ]
+then
+block="\nfrontend http\n\tbind *:80\n\tdefault_backend web-backend"
+echo -e "$block" >> /etc/haproxy/haproxy.cfg
+fi
+
+sudo service haproxy restart
