@@ -26,6 +26,6 @@ exec {  'configure nginx':
 
 exec {  'add header' :
   command => '/bin/sed -i "s/server_name _;/server_name _;\n\t\
-add_header X-Served-By $(hostname);" /etc/nginx/sites-enabled/default',
+add_header X-Served-By $(hostname);/" /etc/nginx/sites-enabled/default',
   require => Exec['configure nginx'],
 }
