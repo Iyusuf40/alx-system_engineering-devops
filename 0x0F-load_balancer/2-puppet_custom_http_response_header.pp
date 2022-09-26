@@ -7,7 +7,8 @@ service {  'nginx':
   ensure  => running,
   require => [ Package['nginx'],
   File['/var/www/html/index.html'],
-  Exec['configure nginx'] ],
+  Exec['configure nginx'],
+  Exec['add header'] ],
 }
 
 file {  '/var/www/html/index.html':
