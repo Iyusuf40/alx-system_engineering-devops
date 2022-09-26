@@ -23,4 +23,4 @@ block="\nfrontend http\n\tbind *:80\n\tdefault_backend web-backend"
 echo -e "$block" >> /etc/haproxy/haproxy.cfg
 fi
 
-sudo service haproxy restart
+sudo service haproxy start
