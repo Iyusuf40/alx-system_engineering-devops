@@ -1,0 +1,32 @@
+#!/usr/bin/env bash
+# script fixes an nginx config bug
+sudo pkill nginx
+sudo service nginx start
+
+# fix sites-availabe
+
+properLine1=$( grep "listen 80 default_server;" < /etc/nginx/\
+sites-available/default )
+properLine2=$( grep "listen [::]:80 default_server;" < /etc/nginx/\
+sites-available/default )
+if [ ! "$properLine1" ] || [ ! "$properLine2" ]
+then
+sudo sed -i "/listen/d" /etc/nginx/sites-available/default
+sudo sed -i "s/^server {/server {\n\tlisten 80 default_server;\n\t\
+listen [::]:80 default_server;/" /etc/nginx/sites-available/default
+fi
+
+#fix sites-enabled
+
+properLine1=$( grep "listen 80 default_server;" < /etc/nginx/\
+sites-enabled/default )
+properLine2=$( grep "listen [::]:80 default_server;" < /etc/nginx/\
+sites-enabled/default )
+if [ ! "$properLine1" ] || [ ! "$properLine2" ]
+then
+sudo sed -i "/listen/d" /etc/nginx/sites-enabled/default
+sudo sed -i "s/^server {/server {\n\tlisten 80 default_server;\n\t\
+listen [::]:80 default_server;/" /etc/nginx/sites-enabled/default
+fi
+
+sudo service nginx restart
