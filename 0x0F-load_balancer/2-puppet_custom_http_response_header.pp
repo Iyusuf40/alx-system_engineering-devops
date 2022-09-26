@@ -7,9 +7,7 @@ service {  'nginx':
   ensure  => running,
   require => [ Package['nginx'],
   File['/var/www/html/index.html'],
-  Exec['configure nginx'],
-  Exec['add header'],
-  ],
+  Exec['configure nginx'] ],
 }
 
 file {  '/var/www/html/index.html':
@@ -29,10 +27,12 @@ exec {  'configure nginx':
 exec {  'add header' :
   command => '/bin/sed -i "s/server_name _;/add_header X-Served-By \
 $(hostname);\n\tserver_name _;/" /etc/nginx/sites-enabled/default',
-  require => Exec['configure nginx'],
+  require => Package['nginx'],
 }
 
 exec {  'restart nginx':
   command => '/usr/sbin/service nginx restart',
-  require => [ Exec['add header'], Service['nginx'] ]
+  require => [ Exec['add header'],
+  Service['nginx'],
+  Package['nginx'] ]
 }
