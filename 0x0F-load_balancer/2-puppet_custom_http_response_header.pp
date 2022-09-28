@@ -26,7 +26,7 @@ exec {  'configure nginx':
 
 exec {  'add header' :
   command => '/bin/sed -i "s/server_name _;/add_header X-Served-By \
-$(hostname);\n\tserver_name _;/" /etc/nginx/sites-enabled/default',
+$(hostname);\n\tserver_name _;/" /etc/nginx/sites-available/default',
   require => Package['nginx'],
 }
 
