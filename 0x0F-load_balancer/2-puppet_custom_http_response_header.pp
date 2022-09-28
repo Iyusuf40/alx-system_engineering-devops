@@ -20,7 +20,7 @@ exec {  'configure nginx':
   command => '/bin/sed -i "s/server_name _;/server_name _;\n\trewrite \
 ^\/redirect_me https:\/\/www.digitalocean.com\/community\/tutorials\
 \/how-to-create-temporary-and-permanent-redirects-with-nginx permanent;/" \
-/etc/nginx/sites-enabled/default',
+/etc/nginx/sites-available/default',
   require => Package['nginx'],
 }
 
