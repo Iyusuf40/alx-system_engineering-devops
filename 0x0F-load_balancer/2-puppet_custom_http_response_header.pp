@@ -20,13 +20,13 @@ exec {  'configure nginx':
   command => '/bin/sed -i "s/server_name _;/server_name _;\n\trewrite \
 ^\/redirect_me https:\/\/www.digitalocean.com\/community\/tutorials\
 \/how-to-create-temporary-and-permanent-redirects-with-nginx permanent;/" \
-/etc/nginx/sites-available/default',
+/etc/nginx/sites-enabled/default',
   require => Package['nginx'],
 }
 
 exec {  'add header' :
   command => '/bin/sed -i "s/server_name _;/add_header X-Served-By \
-$(hostname);\n\tserver_name _;/" /etc/nginx/sites-available/default',
+$(hostname);\n\tserver_name _;/" /etc/nginx/sites-enabled/default',
   require => Package['nginx'],
 }
 
