@@ -1,0 +1,26 @@
+#!/usr/bin/env bash
+# describes domain names
+domain="$1"
+subdomain="$2"
+subdomains="www lb-01 web-01 web-02"
+
+func () {
+if [ -z "$2" ]
+then
+#subdomain=www
+for subdomain in $subdomains
+do
+path="$subdomain.$1"
+#echo $path_www
+res=$( dig "$path" | awk "/^$path./ {print \$5}" )
+echo "The subdomain $subdomain is a A record and points to $res"
+done
+else
+subdomain="$2"
+path="$subdomain.$1"
+res=$( dig "$path" | awk "/^$path./ {print \$5}" )
+echo "The subdomain $subdomain is a A record and points to $res"
+fi
+}
+
+func "$domain" "$subdomain"
