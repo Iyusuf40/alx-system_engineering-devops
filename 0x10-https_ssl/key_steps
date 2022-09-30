@@ -1,0 +1,5 @@
+install certbot
+generate cert
+concatenate fullchain.pem with privkey.pem to a file
+cp file to /etc/ssl/certs/
+use file as cert == at frontend block bind *:443 ssl crt /etc/ssl/certs/cert.pem
