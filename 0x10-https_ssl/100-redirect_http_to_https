@@ -46,4 +46,5 @@ frontend http
         bind *:80
         acl has_www hdr_beg(host) -i www
         http-request redirect code 301  location https://www.%[hdr(host)]%[capture.req.uri]  unless has_www
-        default_backend web-backend
+        http-request redirect code 301  location https://%[hdr(host)]%[capture.req.uri]
+	default_backend web-backend
