@@ -1,0 +1,30 @@
+#!/usr/bin/env bash
+# script configures nginx to run as nginx
+sudo pkill apache2
+sudo service apache2 stop
+file=/etc/nginx/sites-available/default
+is8080=$( grep $'^\tlisten 8080' < "$file")
+if [ ! "$is8080" ]
+then
+echo ======== listen 8080 not set ========
+sed -i "s/^\tlisten 80/\tlisten 8080/" "$file"
+fi
+
+is8080_v6=$( grep $'^\tlisten \[::\]:8080' < "$file" )
+if [ ! "$is8080_v6" ]
+then
+echo "======== listen [::]:8080 not set ========"
+sed -i "s/^\tlisten \[::\]:80/\tlisten \[::\]:8080/" "$file"
+fi
+
+file=/etc/nginx/nginx.conf
+user=$( grep ^user < "$file" )
+if [ ! "$user" ]
+then
+echo ======== user not set ========
+sed -i "s/worker_processes 4;/user nginx;\nworker_processes 4;/" "$file"
+fi
+
+
+sudo service nginx restart
+
