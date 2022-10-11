@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+# creates a mysql db backup
+date=$(date +'%d %m %Y')
+read -r -a arr <<< "$date"
+day=${arr[0]}
+month=${arr[1]}
+year=${arr[2]}
+tar_file="$day-$month-$year.tar.gz"
+# shellcheck disable=SC2024
+sudo mysqldump --user root --password="$1" --all-databases > backup.sql
+tar -cvzf "$tar_file" backup.sql
