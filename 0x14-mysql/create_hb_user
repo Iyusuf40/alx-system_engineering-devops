@@ -1,2 +1,3 @@
+DROP USER IF EXISTS 'holberton_user'@'localhost';
 CREATE USER IF NOT EXISTS 'holberton_user'@'localhost' IDENTIFIED BY 'projectcorrection280hbtn';
-GRANT REPLICATION SLAVE, REPLICATION CLIENT, SELECT ON *.* TO 'holberton_user'@'localhost';
+GRANT REPLICATION CLIENT, REPLICATION SLAVE, SELECT ON *.* TO 'holberton_user'@'localhost';

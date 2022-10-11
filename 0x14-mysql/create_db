@@ -1,0 +1,8 @@
+CREATE DATABASE IF NOT EXISTS tyrell_corp;
+USE tyrell_corp;
+DROP TABLE IF EXISTS nexus6;
+CREATE TABLE IF NOT EXISTS nexus6 (
+id int NOT NULL AUTO_INCREMENT PRIMARY KEY,
+name varchar(255)
+);
+INSERT INTO nexus6 (name) VALUES ('Leon');
