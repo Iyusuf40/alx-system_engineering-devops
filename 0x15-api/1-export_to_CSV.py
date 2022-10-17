@@ -30,7 +30,7 @@ def main():
         ls.append(item.get("title"))
         parent.append(ls)
     with open(file_name, "w", encoding="utf-8") as f:
-        writer = csv.writer(f)
+        writer = csv.writer(f, 'unix')
         writer.writerows(parent)
 
 
