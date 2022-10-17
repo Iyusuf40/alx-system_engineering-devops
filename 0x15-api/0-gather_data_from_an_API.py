@@ -23,7 +23,7 @@ def main():
     for item in todos_list:
         if item.get("completed"):
             completed += 1
-            completed_tasks_title = completed_tasks_title + "\t" +\
+            completed_tasks_title = completed_tasks_title + "\t " +\
                 item.get("title") + "\n"
 
     ratio = str(completed) + "/" + str(size)
