@@ -20,21 +20,14 @@ def main():
     todos_list = todos.json()
     users = requests.get(users_url)
     user_name = users.json().get("username")
-    user_name = '"' + user_name + '"'
     parent = []
     file_name = str(users.json().get("id")) + "." + "csv"
     for item in todos_list:
         ls = []
-        user_id = str(item.get("userId"))
-        user_id = '"' + user_id + '"'
-        ls.append(user_id)
+        ls.append(item.get("userId"))
         ls.append(user_name)
-        completed = str(item.get("completed"))
-        completed = '"' + completed + '"'
-        ls.append(completed)
-        title = item.get("title")
-        title = '"' + title + '"'
-        ls.append(title)
+        ls.append(item.get("completed"))
+        ls.append(item.get("title"))
         parent.append(ls)
     with open(file_name, "w", encoding="utf-8") as f:
         writer = csv.writer(f)
