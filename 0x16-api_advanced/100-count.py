@@ -20,7 +20,6 @@ def count_words(subreddit, kw_list=[]):
     if not dct:
         return
     srted = sorted(dct.items(), key=lambda k: k[1], reverse=True)
-    #  print(srted)
     rec_print(srted, index=0, size=len(srted))
 
 
@@ -52,13 +51,10 @@ def recursor(subreddit, lst, url):
     """ implementation of recursion to get multi pages """
     headers = {'user-agent': 'my-app/0.0.1'}
     r = requests.get(url, headers=headers)
-    #  print("entered")
     if r.status_code == 200:
         try:
             data = r.json()
             list_of_subreddits = data['data']['children']
-            #  for sub_r in list_of_subreddits:
-            #    lst.append(sub_r['data']['title'])
             titles = [x.get('data').get('title') for x in list_of_subreddits]
             lst.extend(titles)
             after = data['data']['after']
@@ -81,8 +77,6 @@ def recurse(subreddit, hot_list=[]):
         try:
             data = r.json()
             list_of_subreddits = data['data']['children']
-            #  for sub_r in list_of_subreddits:
-            #    hot_list.append(sub_r['data']['title'])
             titles = [x.get('data').get('title') for x in list_of_subreddits]
             hot_list.extend(titles)
             after = data['data']['after']
