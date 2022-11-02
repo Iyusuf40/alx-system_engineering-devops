@@ -19,7 +19,8 @@ def count_words(subreddit, kw_list=[]):
     dct = recurse_count(res, kw_list, dct={}, index=0, size=size)
     if not dct:
         return
-    srted = sorted(dct.items(), key=lambda k: k[1], reverse=True)
+    srted = sorted(dct.items(), key=lambda k: k[0])
+    srted = sorted(srted, key=lambda k: k[1], reverse=True)
     rec_print(srted, index=0, size=len(srted))
 
 
