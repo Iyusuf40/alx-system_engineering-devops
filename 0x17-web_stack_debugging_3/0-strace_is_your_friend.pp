@@ -1,9 +1,6 @@
 # puppet manifest ensuring file /var/www/html/index.html exists
-file { '/var/www/html/index.php':
+file { '/var/www/html/index.html':
   ensure  => present,
-  replace => true,
-  content => '<?php
-echo "Holberton";
-?>',
+  content => 'Holberton',
 }
 
