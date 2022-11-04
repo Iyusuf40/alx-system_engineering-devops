@@ -1,6 +1,5 @@
 # puppet manifest ensuring file /var/www/html/index.html exists
-file { '/var/www/html/index.html':
-  ensure  => present,
-  content => 'Holberton',
+exec { 'correct typo':
+  command  => '/bin/sed -i "s/phpp/php/g" /var/www/html/wp-settings.php',
 }
 
