@@ -1,0 +1,10 @@
+To capture particular field of url in nginx use regex and parenthesis.
+Each parenthesis value will be passed to $1 , $2 ... and so on.
+
+location ~ ^/(users)/v2/(.+)$ {
+    proxy_pass http://app.domain.com/api/$1/v2/$2;
+}
+
+here users is matched in regex and value of (.+1) is saved as $1
+
+server fault - A generic rule for regex captures in nginx is that any regular expression inside parentheses is captured in a variable. First parentheses content is captured into $1 and so on.
