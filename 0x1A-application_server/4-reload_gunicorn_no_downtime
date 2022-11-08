@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+# This script reloads gunicorn serveer gracefully
+pkill --signal 1 gunicorn
