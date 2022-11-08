@@ -5,6 +5,7 @@ After=network.target
 [Service]
 User=ubuntu
 Group=www-data
+Restart=always
 WorkingDirectory=/home/ubuntu/AirBnB_clone_v3
 Environment=HBNB_MYSQL_USER=hbnb_dev HBNB_MYSQL_PWD=hbnb_dev_pwd HBNB_MYSQL_HOST=localhost HBNB_MYSQL_DB=hbnb_dev_db HBNB_TYPE_STORAGE=db
 ExecStart=/usr/local/bin/gunicorn --workers 3 --bind 0.0.0.0:5002 --error-logfile /tmp/airbnb-api-error.log --access-logfile /tmp/airbnb-api-access.log api.v1.app:app
