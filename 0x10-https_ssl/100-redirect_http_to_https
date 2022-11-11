@@ -35,8 +35,8 @@ defaults
 
 backend web-backend
         balance roundrobin
-        server sv1 100.25.39.211:80 check
-        server sv2 100.26.180.73:80 check
+        server sv1 web-01.cloza.tech:80 check
+        server sv2 web-02.cloza.tech:80 check
 
 frontend https
         bind *:443 ssl crt /etc/ssl/certs/mycert.pem
